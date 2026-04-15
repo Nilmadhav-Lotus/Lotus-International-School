@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder='.')
 @app.route('/')
 def index():
     # Serves the registration page as the home route
-    return render_template('Nis1register.html')
+    return render_template('Nis1index.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
