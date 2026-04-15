@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nilmadhav International School</title>
+  <style>
+    /* Base Styles */
+    body {
+      background-color: #FFF3E0; /* Consistent with About Us/Events pages */
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh; /* Ensures footer stays at bottom on short pages */
+    }
+
+    /* Header Section */
+    .header-container {
+      width: 100%;
+      background-color: #FFFFFF;
+      padding: 30px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #1E3D59;
+      margin: 0;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    hr {
+      width: 60%;
+      height: 4px;
+      background-color: #D84315;
+      border: none;
+      margin: 15px auto;
+    }
+
+    h2 {
+      color: #555;
+      font-weight: 300;
+      margin-bottom: 30px;
+    }
+    
+    /* Navigation Grid */
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 25px;
+      max-width: 1000px;
+      width: 90%;
+      margin: 40px auto;
+    }
+
+    .nav-card {
+      background-color: #FFFFFF;
+      padding: 25px 15px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: #1E3D59;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      border-bottom: 5px solid #1E3D59;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-card:hover {
+      transform: translateY(-8px);
+      background-color: #e3f2fd;
+      color: #D84315;
+      border-bottom-color: #D84315;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 800px) {
+      .nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Welcome Text */
+    .intro {
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      margin: 20px;
+      font-style: italic;
+      color: #444;
+    }
+
+    footer {
+      width: 100%;
+      margin-top: auto;
+      padding: 40px 0;
+      font-size: 14px;
+      color: gray;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-container">
+    <h1>Nilmadhav International School</h1>
+    <hr>
+    <h2>Empowering Future Leaders</h2>
+  </div>
+
+  <p class="intro">
+    Welcome to the digital home of Nilmadhav International School. Explore our programs, stay updated with our latest events, and join our vibrant learning community.
+  </p>
+
+  <div class="nav-grid">
+    <a href="Nis1admission.html" class="nav-card">📋 Admissions</a>
+    <a href="Nis1events.html" class="nav-card">🎉 Events</a>
+    <a href="Nis1sports.html" class="nav-card">🏆 Sports</a>
+    <a href="Nis1activities.html" class="nav-card">🎨 Activities</a>
+    <a href="Nis1about.html" class="nav-card">🏫 About Us</a>
+    <a href="Nis1contact.html" class="nav-card">📞 Contact Us</a>
+  </div> <footer>
+    &copy; 2025 Nilmadhav International School. All rights reserved.
+  </footer>
+
+</body>
+</html>
