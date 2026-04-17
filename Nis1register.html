@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register for Pachora's Best School: Nilmadhav International School</title>
+  <title>Register for Nilmadhav International School</title>
   <style>
-    /* Your original CSS stays here... */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -21,13 +20,11 @@
       color: orange;
       text-align: center;
       text-decoration: underline;
-      text-decoration-color: black;
       padding: 15px;
       width: 100%;
       font-weight: 700;
       font-size: 2rem;
     }
-    hr.full-width { background-color: cyan; height: 4px; border: none; width: 100%; margin: 0; }
     .container {
       background-color: #fff;
       border-radius: 15px;
@@ -39,7 +36,7 @@
     }
     h2 { text-align: center; color: #388e3c; margin-bottom: 25px; }
     label { display: block; margin-bottom: 8px; color: #555; font-weight: 600; }
-    input[type="text"], select {
+    input[type="text"], input[type="tel"], select {
       width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid #c8e6c9; border-radius: 8px;
     }
     .submit-btn {
@@ -47,48 +44,33 @@
     }
   </style>
 </head>
-
 <body>
   <div class="header">Nilmadhav International School</div>
-  <hr class="full-width" />
-
   <div class="container">
     <h2>Registration Form</h2>
-
     <form action="/submit" method="POST">
       <label for="username">User Name:</label>
-      <input type="text" id="username" name="username" placeholder="Enter your full name" required />
+      <input type="text" id="username" name="username" placeholder="Enter full name" required />
 
       <label for="standard">Standard:</label>
       <select id="standard" name="standard" required>
-        <option value="" disabled selected>Select your standard</option>
-        <option value="Nursery">Nursery</option>
-        <option value="LKG">LKG</option>
-        <option value="UKG">UKG</option>
-        <option value="I">I</option>
-        <option value="II">II</option>
-        <option value="III">III</option>
-        <option value="IV">IV</option>
-        <option value="V">V</option>
-        <option value="VI">VI</option>
-        <option value="VII">VII</option>
-        <option value="VIII">VIII</option>
+        <option value="" disabled selected>Select standard</option>
         <option value="IX">IX</option>
         <option value="X">X</option>
+        <option value="Nursery">Nursery</option>
       </select>
 
       <label>Gender:</label>
-      <div class="gender" style="margin-bottom: 20px;">
-        <label style="display:inline; margin-right: 15px;"><input type="radio" name="gender" value="Male" required /> Male</label>
-        <label style="display:inline; margin-right: 15px;"><input type="radio" name="gender" value="Female" required /> Female</label>
-        <label style="display:inline;"><input type="radio" name="gender" value="Other" required /> Other</label>
+      <div style="margin-bottom: 20px;">
+        <input type="radio" name="gender" value="Male" required> Male
+        <input type="radio" name="gender" value="Female" required> Female
       </div>
 
-      <label for="parent_mobile">Parent's Mobile No.:</label>
-      <input type="text" id="parent_mobile" name="parent_mobile" placeholder="Enter mobile number" pattern="[0-9]{10}" required />
+      <label for="parent_mobile">Parent's Mobile:</label>
+      <input type="tel" id="parent_mobile" name="parent_mobile" placeholder="10-digit number" pattern="[0-9]{10}" required />
 
       <label for="address">Address:</label>
-      <input type="text" id="address" name="address" placeholder="Enter your address" required />
+      <input type="text" id="address" name="address" placeholder="Enter address" required />
 
       <button class="submit-btn" type="submit">Submit</button>
     </form>
