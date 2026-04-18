@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__, template_folder='.')
 
 # Use your LATEST Google Script URL here
-SHEET_URL = "https://script.google.com/macros/s/AKfycbxIVfJjFmot2_7fdMOytLfEkGtscJ8zjD3iZedK8C5POY0c1OX2C7BvMvSrtChc-uK1/exec"
+SHEET_URL = "https://script.google.com/macros/s/AKfycbwRLDRpo-h7DG7BZSlpA_2o7q9okkxNZcUyI_FQdYhe25A0mNAOShpetjxyGukriOSN/exec"
 
 @app.route('/')
 def index():
