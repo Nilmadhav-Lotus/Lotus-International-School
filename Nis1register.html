@@ -36,12 +36,18 @@
     }
     h2 { text-align: center; color: #388e3c; margin-bottom: 25px; }
     label { display: block; margin-bottom: 8px; color: #555; font-weight: 600; }
-    input[type="text"], input[type="tel"], select {
+    
+    /* Added input[type="date"] here so it looks like the others */
+    input[type="text"], input[type="tel"], input[type="date"], select {
       width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid #c8e6c9; border-radius: 8px;
+      font-family: inherit;
     }
+    
     .submit-btn {
       width: 100%; padding: 14px; background-color: #4caf50; color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer;
+      transition: background 0.3s;
     }
+    .submit-btn:hover { background-color: #45a049; }
   </style>
 </head>
 <body>
@@ -51,6 +57,9 @@
     <form action="/submit" method="POST">
       <label for="username">User Name:</label>
       <input type="text" id="username" name="username" placeholder="Enter full name" required />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required />
 
       <label for="standard">Standard:</label>
       <select id="standard" name="standard" required>
