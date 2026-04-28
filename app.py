@@ -10,9 +10,11 @@ SHEET_URL = "https://script.google.com/macros/s/AKfycbz4SDW9JrLvWEPRWaKHjv5Fxhu0
 @app.route('/')
 def index():
     return render_template('Nis1index.html')
-
-@app.route('/register')
+    
+# Change the route name to match your HTML link exactly
+@app.route('/Nis1admission.html')
 def register():
+    # This still opens your registration form file
     return render_template('Nis1register.html')
 
 @app.route('/submit', methods=['POST'])
