@@ -17,6 +17,10 @@ def index():
 def register():
     return render_template('Nis1admission.html')
 
+@app.route('/Nis1register.html')
+def register_page():
+    return render_template('Nis1register.html')
+
 @app.route('/Nis1events.html')
 def events():
     return render_template('Nis1events.html')
