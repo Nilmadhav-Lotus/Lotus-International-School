@@ -57,10 +57,33 @@
     <form action="/submit" method="POST">
       <label for="username">User Name:</label>
       <input type="text" id="username" name="username" placeholder="Enter full name" required />
+      
+      <label for="father_name">Father's Full Name:</label>
+      <input type="text" id="father_name" name="father_name" placeholder="Enter father's name" required />
 
+      <label for="mother_name">Mother's Full Name:</label>
+      <input type="text" id="mother_name" name="mother_name" placeholder="Enter mother's name" required />
+      
       <label for="dob">Date of Birth:</label>
       <input type="date" id="dob" name="dob" required />
 
+      <label for="blood_group">Blood Group:</label>
+    
+      <select id="blood_group" name="blood_group">
+    <option value="" disabled selected>Select Blood Group</option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    </select>
+      
+      <label for="parent_email">Parent's Email Address:</label>
+      <input type="email" id="parent_email" name="parent_email" placeholder="example@email.com" required />
+      
       <label for="standard">Standard:</label>
       <select id="standard" name="standard" required>
         <option value="" disabled selected>Select standard</option>
