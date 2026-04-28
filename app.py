@@ -5,17 +5,39 @@ import requests
 app = Flask(__name__, template_folder='.')
 
 # Your latest Google Script URL
-SHEET_URL = "https://script.google.com/macros/s/AKfycbz4SDW9JrLvWEPRWaKHjv5Fxhu00O3kjt0uj9cDMK9fbhUhn-COYbCvvuz2h07utHNL/exec"
+SHEET_URL = "https://script.google.com/macros/s/AKfycbzdGbEUMgw28ySotKoT-opBMsfckz5rljJOEp58ow5z_s1TZPafVCytDPQb1EVpPTUb/exec"
 
 @app.route('/')
 def index():
     return render_template('Nis1index.html')
-    
-# Change the route name to match your HTML link exactly
+
+# --- DASHBOARD ROUTES ---
+
 @app.route('/Nis1admission.html')
 def register():
-    # This still opens your registration form file
     return render_template('Nis1register.html')
+
+@app.route('/Nis1events.html')
+def events():
+    return render_template('Nis1events.html')
+
+@app.route('/Nis1sports.html')
+def sports():
+    return render_template('Nis1sports.html')
+
+@app.route('/Nis1activities.html')
+def activities():
+    return render_template('Nis1activities.html')
+
+@app.route('/Nis1about.html')
+def about():
+    return render_template('Nis1about.html')
+
+@app.route('/Nis1contact.html')
+def contact():
+    return render_template('Nis1contact.html')
+
+# --- DATA SUBMISSION ---
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -31,18 +53,11 @@ def submit():
     mobile = request.form.get('parent_mobile')
     address = request.form.get('address')
     
-    # Send all data to Google
     payload = {
-        "name": name,
-        "father": father,
-        "mother": mother,
-        "dob": dob,
-        "blood": blood,
-        "email": email,
-        "standard": standard,
-        "gender": gender,
-        "mobile": mobile,
-        "address": address
+        "name": name, "father": father, "mother": mother,
+        "dob": dob, "blood": blood, "email": email,
+        "standard": standard, "gender": gender, 
+        "mobile": mobile, "address": address
     }
     
     try:
@@ -50,7 +65,7 @@ def submit():
     except Exception as e:
         print(f"Error: {e}")
 
-    # The Formal Success Notice
+    # Professional Success Report
     return f"""
     <!DOCTYPE HTML>
     <html lang="en">
@@ -78,7 +93,7 @@ def submit():
                 • <strong>Parent Email:</strong> {email}<br>
                 • <strong>Registered Address:</strong> {address}
             </div>
-            <p style="font-size: 0.9rem;">This message serves as formal confirmation that these details have been securely recorded.</p>
+            <p style="font-size: 0.9rem;">Registration details for {name} have been securely recorded.</p>
             <a href="/" class="btn">Return to Portal</a>
         </div>
     </body>
