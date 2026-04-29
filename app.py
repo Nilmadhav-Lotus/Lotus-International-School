@@ -14,11 +14,11 @@ def index():
 # --- DASHBOARD ROUTES ---
 
 @app.route('/Nis1admission.html')
-def register():
+def admission():
     return render_template('Nis1admission.html')
 
-@app.route('/Nis1register.html')
-def register_page():
+@app.route('/Nis1register.html') 
+def register_page(): 
     return render_template('Nis1register.html')
 
 @app.route('/Nis1events.html')
@@ -45,7 +45,7 @@ def contact():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    # Capture ALL form data
+    # 1. Capture ALL form data from the website
     name = request.form.get('username')
     father = request.form.get('father_name')
     mother = request.form.get('mother_name')
@@ -64,46 +64,103 @@ def submit():
         "mobile": mobile, "address": address
     }
     
+    # 2. Send to Google Sheets
     try:
         requests.post(SHEET_URL, json=payload, timeout=10)
     except Exception as e:
         print(f"Error: {e}")
 
-    # Professional Success Report
+    # 3. Modern Success Page with ALL details
     return f"""
     <!DOCTYPE HTML>
     <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Registration Successful</title>
         <style>
-            body {{ font-family: 'Segoe UI', sans-serif; background: #e8f5e9; display: flex; justify-content: center; padding: 20px; }}
-            .report {{ background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; width: 100%; border-top: 10px solid #4caf50; }}
-            h1 {{ color: #2e7d32; font-size: 1.5rem; text-align: center; }}
-            .details {{ margin: 20px 0; line-height: 1.8; }}
-            .btn {{ display: block; text-align: center; background: #4caf50; color: white; padding: 10px; text-decoration: none; border-radius: 5px; margin-top: 20px; }}
+            body {{
+                margin: 0;
+                font-family: 'Segoe UI', sans-serif;
+                background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                padding: 20px;
+            }}
+            .card {{
+                background: white;
+                padding: 30px;
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+                text-align: center;
+                max-width: 500px;
+                width: 100%;
+            }}
+            .checkmark {{
+                font-size: 60px;
+                color: #4caf50;
+                margin-bottom: 10px;
+                animation: scaleIn 0.5s ease-out;
+            }}
+            @keyframes scaleIn {{
+                0% {{ transform: scale(0); }}
+                100% {{ transform: scale(1); }}
+            }}
+            h1 {{ color: #2e7d32; margin-top: 0; font-size: 1.6rem; }}
+            .details {{
+                background: #f9f9f9;
+                padding: 15px;
+                border-radius: 12px;
+                margin: 20px 0;
+                text-align: left;
+                border-left: 6px solid #4caf50;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }}
+            .details strong {{ color: #555; width: 120px; display: inline-block; }}
+            .btn {{
+                display: inline-block;
+                padding: 12px 30px;
+                background: #4caf50;
+                color: white;
+                text-decoration: none;
+                border-radius: 30px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }}
+            .btn:hover {{
+                background: #45a049;
+                transform: translateY(-2px);
+            }}
         </style>
     </head>
     <body>
-        <div class="report">
-            <h1>🏫 Nilmadhav International School</h1>
-            <p style="text-align:center; font-weight:bold; text-decoration:underline;">OFFICIAL NOTICE</p>
-            <p>To the Parent/Guardian of <strong>{name}</strong>,</p>
+        <div class="card">
+            <div class="checkmark">✔</div>
+            <h1>Registration Complete!</h1>
+            <p style="color: #666;">Official details recorded for NIS admission:</p>
+            
             <div class="details">
-                • <strong>Student Name:</strong> {name}<br>
-                • <strong>Date of Birth:</strong> {dob}<br>
-                • <strong>Standard:</strong> {standard}<br>
-                • <strong>Blood Group:</strong> {blood}<br>
-                • <strong>Parent Email:</strong> {email}<br>
-                • <strong>Registered Address:</strong> {address}
+                <div><strong>Student:</strong> {name}</div>
+                <div><strong>Standard:</strong> {standard}</div>
+                <div><strong>Father:</strong> {father}</div>
+                <div><strong>Mother:</strong> {mother}</div>
+                <div><strong>DOB:</strong> {dob}</div>
+                <div><strong>Blood Group:</strong> {blood}</div>
+                <div><strong>Email:</strong> {email}</div>
+                <div><strong>Mobile:</strong> {mobile}</div>
+                <div><strong>Address:</strong> {address}</div>
             </div>
-            <p style="font-size: 0.9rem;">Registration details for {name} have been securely recorded.</p>
-            <a href="/" class="btn">Return to Portal</a>
+            
+            <a href="/" class="btn">Back to Home</a>
         </div>
     </body>
     </html>
     """
 
 if __name__ == '__main__':
+    # Fix for Render: It listens to the dynamic port provided by the environment
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
