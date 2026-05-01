@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder='.')
 
 # --- CONFIGURATION ---
 # 2. Setup Gemini API Key (Make sure this is set in your Render environment variables!)
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+genai.configure(api_key=os.environ.get("AIzaSyBoagfRrlDlxS99mBmK2JqvJS9dPlewDnQ"))
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 SHEET_URL = "https://script.google.com/macros/s/AKfycbzdGbEUMgw28ySotKoT-opBMsfckz5rljJOEp58ow5z_s1TZPafVCytDPQb1EVpPTUb/exec"
