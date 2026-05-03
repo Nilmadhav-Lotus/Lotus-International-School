@@ -5,7 +5,7 @@
   <style>
     /* Base Styles */
     body {
-      background-color: #FFF3E0;
+      background-color: #FFF3E0; /* Consistent with About Us/Events pages */
       font-family: 'Segoe UI', Arial, sans-serif;
       color: #333;
       margin: 0;
@@ -13,7 +13,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
+      min-height: 100vh; /* Ensures footer stays at bottom on short pages */
     }
 
     /* Header Section */
@@ -84,13 +84,18 @@
 
     /* Responsive adjustments */
     @media (max-width: 800px) {
-      .nav-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 500px) {
-      .nav-grid { grid-template-columns: 1fr; }
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
+    /* Welcome Text */
     .intro {
       max-width: 800px;
       text-align: center;
@@ -101,20 +106,19 @@
       color: #444;
     }
 
-    footer {
-      width: 100%;
-      margin-top: auto;
-      padding: 40px 0;
-      font-size: 14px;
-      color: gray;
-      text-align: center;
+    /* UPDATED FOOTER CSS */
+    .nis-footer {
+        width: 100%;
+        text-align: center; 
+        padding: 30px 0; 
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #fff; 
+        border-top: 1px solid #eee; 
+        margin-top: auto;
     }
-
-    /* Glassmorphism for AI Window */
-    #chat-window {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.9) !important;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+    .school-bold { 
+        color: #1E3D59; 
+        font-weight: bold; 
     }
   </style>
 </head>
@@ -137,73 +141,13 @@
     <a href="Nis1activities.html" class="nav-card">🎨 Activities</a>
     <a href="Nis1about.html" class="nav-card">🏫 About Us</a>
     <a href="Nis1contact.html" class="nav-card">📞 Contact Us</a>
-  </div> <!-- Grid ends here -->
+  </div> 
 
-  <!-- Floating Chat Button -->
-  <div id="ai-bubble" onclick="toggleChat()" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #4caf50, #2e7d32); border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.3); cursor: pointer; display: flex; justify-content: center; align-items: center; z-index: 1000; transition: transform 0.3s;">
-      <span style="font-size: 30px;">🤖</span>
-  </div>
-
-  <!-- Chat Window -->
-  <div id="chat-window" style="display: none; position: fixed; bottom: 100px; right: 30px; width: 320px; background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); z-index: 1000; overflow: hidden; font-family: 'Segoe UI', sans-serif;">
-      <div style="background: #2e7d32; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between;">
-          <span>NIS Smart Assistant</span>
-          <span onclick="toggleChat()" style="cursor: pointer;">✕</span>
-      </div>
-      <div id="chat-logs" style="height: 250px; overflow-y: auto; padding: 15px; background: rgba(249, 249, 249, 0.5); font-size: 14px; line-height: 1.5;">
-          <div style="margin-bottom: 10px; color: #555;"><i>Ask me about admissions, events, or our principal!</i></div>
-      </div>
-      <div style="padding: 10px; border-top: 1px solid #eee; display: flex; background: white;">
-          <input type="text" id="ai-input" placeholder="Type a message..." style="flex: 1; border: none; outline: none; padding: 10px;">
-          <button onclick="askAssistant()" style="background: #4caf50; color: white; border: none; padding: 8px 15px; border-radius: 10px; cursor: pointer;">Send</button>
-      </div>
-  </div>
-
-  <footer>
-    &copy; 2025 Nilmadhav International School. All rights reserved.
+  <!-- UPDATED FOOTER HTML -->
+  <footer class="nis-footer">
+      <div>&copy; 2026 <span class="school-bold">Nilmadhav International School</span>. All rights reserved.</div>
+      <div style="font-size: 0.75rem; color: #999; margin-top: 8px;">Designed & Developed for NIS Academic Management</div>
   </footer>
 
-  <script>
-    function toggleChat() {
-        const win = document.getElementById('chat-window');
-        const bubble = document.getElementById('ai-bubble');
-        if (win.style.display === 'none') {
-            win.style.display = 'block';
-            bubble.style.transform = 'scale(0.9) rotate(15deg)';
-        } else {
-            win.style.display = 'none';
-            bubble.style.transform = 'scale(1) rotate(0deg)';
-        }
-    }
-
-    async function askAssistant() {
-        const input = document.getElementById('ai-input');
-        const logs = document.getElementById('chat-logs');
-        const userMsg = input.value.trim();
-        
-        if (!userMsg) return;
-
-        logs.innerHTML += `<div style="text-align: right; margin-bottom: 10px;"><span style="background: #e1ffc7; padding: 8px 12px; border-radius: 12px; display: inline-block; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">${userMsg}</span></div>`;
-        input.value = "";
-        logs.scrollTop = logs.scrollHeight;
-
-        try {
-            const response = await fetch('/ask-ai', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({message: userMsg})
-            });
-            const data = await response.json();
-            logs.innerHTML += `<div style="margin-bottom: 10px;"><span style="background: #ffffff; padding: 8px 12px; border-radius: 12px; display: inline-block; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">${data.answer}</span></div>`;
-        } catch (err) {
-            logs.innerHTML += `<div style="color: red; font-size: 12px; text-align: center;">Connection lost. Try again!</div>`;
-        }
-        logs.scrollTop = logs.scrollHeight;
-    }
-
-    document.getElementById('ai-input').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') askAssistant();
-    });
-  </script>
 </body>
 </html>
